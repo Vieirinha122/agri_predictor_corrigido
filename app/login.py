@@ -3,23 +3,32 @@ from dash import html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 from dash.exceptions import PreventUpdate
 from app import dashboard
-from dash import ctx
-import time
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
-server = app.server  # Para hospedagem futura se quiser
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG], suppress_callback_exceptions=True)  # Tema escuro bonito
+server = app.server
 
-# Estado de controle para saber se o usuário logou
-login_success = False
-
+# Layout do Login
 app.layout = html.Div(id='main-content', children=[
     html.Div(id='login-area', children=[
-        html.H2('Login'),
-        dbc.Input(id='username', placeholder='Usuário', type='text', className='mb-2'),
-        dbc.Input(id='password', placeholder='Senha', type='password', className='mb-2'),
-        dbc.Button('Entrar', id='login-button', color='primary'),
-        html.Div(id='login-message', className='mt-2')
-    ]),
+        html.Div([
+            html.H2('🌾 Bem-vindo ao Preditor Agrícola', style={'textAlign': 'center', 'marginBottom': '20px', 'color': '#00FFAA'}),
+            dbc.Input(id='username', placeholder='Usuário', type='text', className='mb-3', style={'backgroundColor': '#1c1c1c', 'color': 'white'}),
+            dbc.Input(id='password', placeholder='Senha', type='password', className='mb-3', style={'backgroundColor': '#1c1c1c', 'color': 'white'}),
+            dbc.Button('Entrar', id='login-button', color='success', className='w-100'),
+            html.Div(id='login-message', className='mt-3', style={'color': 'red', 'textAlign': 'center'})
+        ], style={
+            'backgroundColor': '#2a2a2a',
+            'padding': '30px',
+            'borderRadius': '10px',
+            'boxShadow': '0px 0px 20px #00FFAA'
+        })
+    ], style={
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'height': '100vh'
+    }),
+
     html.Div(id='loading-area')
 ])
 
@@ -34,18 +43,22 @@ app.layout = html.Div(id='main-content', children=[
 )
 def check_login(n_clicks, username, password):
     if username == 'adm' and password == 'adm123':
-        # Retorna o spinner de loading
         loading_layout = html.Div([
-            dbc.Spinner(color='primary', size='lg'),
-            html.H4('Carregando, por favor aguarde...'),
+            dbc.Spinner(color='success', size='lg', fullscreen=True, type='grow'),
+            html.H4('🔄 Carregando, por favor aguarde...', style={'color': 'white', 'marginTop': '20px'}),
             dcc.Interval(id='wait-interval', interval=5000, n_intervals=0, max_intervals=1)
-        ], style={'textAlign': 'center', 'marginTop': '100px'})
+        ], style={
+            'textAlign': 'center',
+            'paddingTop': '200px',
+            'backgroundColor': '#121212',
+            'height': '100vh'
+        })
 
         return '', loading_layout, dash.no_update
     else:
-        return 'Usuário ou senha incorretos.', '', dash.no_update
+        return '❌ Usuário ou senha incorretos.', '', dash.no_update
 
-# Callback para trocar para o dashboard depois de 5 segundos
+# Após 5 segundos, mostra o dashboard
 @app.callback(
     Output('main-content', 'children', allow_duplicate=True),
     Input('wait-interval', 'n_intervals'),
