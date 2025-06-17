@@ -1,0 +1,44 @@
+# Ambientes Virtuais
+venv/
+env/
+ENV/
+.venv/
+*.pyc
+__pycache__/
+
+# IDEs
+.vscode/
+.idea/
+
+
+
+# Arquivos de Configuração Pessoais
+*.env
+*.DS_Store
+
+# Arquivos de Dados Temporários
+data/*.csv
+!data/.gitkeep  # mantém a pasta, ignora os arquivos
+
+# Modelos treinados
+*.pkl
+*.joblib
+
+# Checkpoints
+checkpoints/
+logs/
+
+# Jupyter Notebooks Checkpoints
+.ipynb_checkpoints
+
+# Arquivos de Cache
+*.log
+*.tmp
+
+# Arquivos do sistema
+Thumbs.db
+Desktop.ini
+
+# Relatórios exportados
+*.pdf
+*.html
