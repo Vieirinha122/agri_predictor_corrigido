@@ -1,29 +1,46 @@
+# Agri Predictor Corrigido
 
-# Preditor de Produtividade Agrícola
+Este repositório contém um projeto voltado para a previsão e análise agrícola utilizando técnicas de ciência de dados e/ou inteligência artificial.
+
+## Funcionalidades
+
+- Previsão de safras ou produtividade agrícola
+- Análise de dados históricos do setor agrícola
+- Ferramentas e utilitários para facilitar a tomada de decisão
+
+## Por que usar?
+
+O Agri Predictor Corrigido auxilia produtores, pesquisadores e interessados em agricultura a obter previsões mais precisas sobre safras, produtividade e outros indicadores relevantes, otimizando recursos e reduzindo riscos.
+
+## Como começar
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Vieirinha122/agri_predictor_corrigido.git
 
 ### Como rodar o projeto:
 
-1. Crie o ambiente virtual:
+2. Crie o ambiente virtual:
 ```
 python -m venv venv
 ```
 
-2. Ative o ambiente (Windows):
+3. Ative o ambiente (Windows):
 ```
 venv\Scripts\activate
 ```
 
-3. Instale as dependências:
+4. Instale as dependências:
 ```
 pip install -r requirements.txt
 ```
 
-4. Gere as predições:
+5. Gere as predições:
 ```
 python -m app.predict
 ```
 
-5. Inicie o dashboard:
+6. Inicie o dashboard:
 ```
 python -m app.dashboard
 ```
